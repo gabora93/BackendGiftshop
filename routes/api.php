@@ -7,12 +7,12 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductPublicController;
 
 
-Route::group(['middleware' => ['cors']], function () {
+
     Route::post('login', [ApiController::class, 'authenticate']);
     Route::post('register', [ApiController::class, 'register']);
     Route::get('getProducts', [ProductPublicController::class, 'allProducts']);
     Route::get('product-detail/{id}', [ProductPublicController::class, 'show']);
-});
+
 
 
 Route::group(['middleware' => ['cors','jwt.verify']], function () {
