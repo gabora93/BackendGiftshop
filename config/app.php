@@ -177,7 +177,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Fruitcake\Cors\CorsServiceProvider::class, 
-        "Barryvdh\Cors\ServiceProvider::class"
     ],
 
     /*
