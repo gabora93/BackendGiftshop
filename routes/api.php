@@ -15,7 +15,7 @@ Route::group(['middleware' => ['cors']], function () {
 });
 
 
-Route::group(['middleware' => ['jwt.verify', 'cors']], function () {
+Route::group(['middleware' => ['cors','jwt.verify']], function () {
     Route::get('logout', [ApiController::class, 'logout']);
     Route::post('get_user', [ApiController::class, 'get_user']);
     Route::get('products', [ProductController::class, 'index']);
