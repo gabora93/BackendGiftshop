@@ -6,13 +6,16 @@ use App\Http\Controllers\ApiController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductPublicController;
 
-Route::post('login', [ApiController::class, 'authenticate']);
-Route::post('register', [ApiController::class, 'register']);
-Route::get('getProducts', [ProductPublicController::class, 'allProducts']);
-Route::get('product-detail/{id}', [ProductPublicController::class, 'show']);
+
+Route::group(['middleware' => ['cors']], function () {
+    Route::post('login', [ApiController::class, 'authenticate']);
+    Route::post('register', [ApiController::class, 'register']);
+    Route::get('getProducts', [ProductPublicController::class, 'allProducts']);
+    Route::get('product-detail/{id}', [ProductPublicController::class, 'show']);
+});
 
 
-Route::group(['middleware' => ['jwt.verify']], function() {
+Route::group(['middleware' => ['jwt.verify', 'cors']], function () {
     Route::get('logout', [ApiController::class, 'logout']);
     Route::post('get_user', [ApiController::class, 'get_user']);
     Route::get('products', [ProductController::class, 'index']);
